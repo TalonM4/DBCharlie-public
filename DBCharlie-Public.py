@@ -172,7 +172,7 @@ async def on_message(message):
             await message.channel.send("You need to be in a VC.")
 
     if message.content == "!seth":
-        await message.channel.send("https://cdn.discordapp.com/attachments/746092914668601344/795897568004407316/gYEcXI8h.png")
+        await message.channel.send("image-url")
 
         if random.randrange(100) == 4:
             if message.author.dm_channel == None:
