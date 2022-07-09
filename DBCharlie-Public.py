@@ -84,17 +84,15 @@ async def on_message(message):
 
     if message.content.startswith("!create-command"):
         if message.author.id == SERVER.owner_id:
-            processedOnce = message.content[message.content.index(" ") + 1:]
-            processedDefinition = processedOnce[processedOnce.index(" ") + 1:]
-            processedKey = processedOnce[: processedOnce.index(" "):]
+            processed = message.content.split(maxsplit=2)
             with open("commands.json", "r") as open_file:
                 commands = json.load(open_file)
-                commands[processedKey] = processedDefinition
+                commands[processed[1]] = processed[2]
             json_commands = json.dumps(commands)
             with open("commands.json", "w") as outfile:
                 outfile.write(json_commands)
             embedVar = discord.Embed(title="Command Created",
-                                     description="With trigger: " + processedKey + " and response: " + processedDefinition,
+                                     description="With trigger: " + processed[1] + " and response: " + processed[2],
                                      color=0x123456)
             await message.channel.send(embed=embedVar)
 
